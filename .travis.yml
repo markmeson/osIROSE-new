@@ -310,7 +310,7 @@ deploy:
     upload-dir: ${TRAVIS_REPO_SLUG}/${TRAVIS_BUILD_NUMBER}
     on:
       repo: RavenX8/osIROSE-new
-      all_branches: true
+#      all_branches: true
 #     branch: master
       tag: true
       
