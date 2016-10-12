@@ -15,15 +15,14 @@ env:
 services:
 - mysql
 
-branches:
-  except:
-  - coverity_scan
-
 matrix:
   include:
   - env: g++-5 BUILD_TYPE=Release
     sudo: required
     language: cpp
+    branches:
+      except:
+      - coverity_scan
     addons:
 #      artifacts:
 #        paths:
@@ -64,6 +63,9 @@ matrix:
   - env: g++-6 BUILD_TYPE=Debug
     sudo: required
     language: cpp
+    branches:
+      except:
+      - coverity_scan
     addons:
 #      artifacts:
 #        paths:
@@ -104,6 +106,9 @@ matrix:
   - env: g++-6 BUILD_TYPE=Release
     sudo: required
     language: cpp
+    branches:
+      except:
+      - coverity_scan
     addons:
 #      artifacts:
 #        paths:
@@ -145,6 +150,9 @@ matrix:
   - env: clang-3.7 LIBCXX=1 BUILD_TYPE=Debug
     sudo: required
     language: cpp
+    branches:
+      except:
+      - coverity_scan
     addons:
 #      artifacts:
 #        paths:
@@ -190,6 +198,9 @@ matrix:
   - env: clang-3.7 LIBCXX=1 BUILD_TYPE=Release
     sudo: required
     language: cpp
+    branches:
+      except:
+      - coverity_scan
     addons:
 #      artifacts:
 #        paths:
