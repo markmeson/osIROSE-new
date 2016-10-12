@@ -234,8 +234,11 @@ matrix:
     - "../ci/script.sh;"
     
   - env: g++-6 coverity_scan BUILD_TYPE=Release
-    sudo: required
+    sudo: false
     language: cpp
+    branches:
+      only:
+      - coverity_scan
     addons:
       apt:
         sources:
@@ -253,9 +256,6 @@ matrix:
     cache:
       directories:
       - "./protobuf"
-    branches:
-      only:
-      - coverity_scan
     before_install:
     - export SUITE=none
     - export GCOV_PATH=/usr/bin/gcov-6
@@ -263,7 +263,7 @@ matrix:
     - export GENHTML_PATH=$HOME/usr/bin/genhtml
     - export PREFIX=$HOME
     - export CXX="/usr/bin/g++-6" CC="/usr/bin/gcc-6";
-    - bash ./ci/.travis.install-mysql-5.7.sh
+    #- bash ./ci/.travis.install-mysql-5.7.sh
     - "./ci/before_install.sh"
     install:
     - "./ci/install.sh"
