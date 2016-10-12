@@ -14,6 +14,11 @@ env:
   - SUITE=tests
 services:
 - mysql
+
+branches:
+  except:
+  - coverity_scan
+
 matrix:
   include:
   - env: g++-5 BUILD_TYPE=Release
@@ -39,9 +44,6 @@ matrix:
     cache:
       directories:
       - "./protobuf"
-    branches:
-      except:
-      - coverity_scan
     before_install:
     - export GCOV_PATH=/usr/bin/gcov-5
     - export LCOV_PATH=$HOME/usr/bin/lcov
@@ -82,9 +84,6 @@ matrix:
     cache:
       directories:
       - "./protobuf"
-    branches:
-      except:
-      - coverity_scan
     before_install:
     - export GCOV_PATH=/usr/bin/gcov-6
     - export LCOV_PATH=$HOME/usr/bin/lcov
@@ -125,9 +124,6 @@ matrix:
     cache:
       directories:
       - "./protobuf"
-    branches:
-      except:
-      - coverity_scan
     before_install:
     - export SUITE=none
     - export GCOV_PATH=/usr/bin/gcov-6
@@ -174,9 +170,6 @@ matrix:
       directories:
       - "./protobuf"
       - llvm-3.7.0
-    branches:
-      except:
-      - coverity_scan
     before_install:
     - export GCOV_PATH=${PROOT}/ci/llvm-gcov.sh
     - export LCOV_PATH=$HOME/usr/bin/lcov
@@ -222,9 +215,6 @@ matrix:
       directories:
       - "./protobuf"
       - llvm-3.7.0
-    branches:
-      except:
-      - coverity_scan
     before_install:
     - export GCOV_PATH=${PROOT}/ci/llvm-gcov.sh
     - export LCOV_PATH=$HOME/usr/bin/lcov
@@ -243,7 +233,7 @@ matrix:
     script:
     - "../ci/script.sh;"
     
-  - env: g++-6 coverity_scan
+  - env: g++-6 coverity_scan BUILD_TYPE=Release
     sudo: required
     language: cpp
     addons:
@@ -292,6 +282,7 @@ matrix:
       cmake ..;
     build_command: make
     branch_pattern: coverity_scan
+    
 notifications:
   webhooks:
     urls:
